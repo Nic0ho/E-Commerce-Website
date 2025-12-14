@@ -1,30 +1,71 @@
 <!DOCTYPE html>
 <html>
-    <head><title>Головна сторінка</title>
-    <meta charset="UTF-8">
+    <head>
+        <title>Головна сторінка</title>
+        <meta charset="UTF-8">
 
-    <link rel="stylesheet" href="styles.css">
-</head>
+        <link rel="stylesheet" href="style.css">
+
+        <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;700&family=M+PLUS+Rounded+1c:wght@400;700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+    </head>
     <body>
         <header>
-            <div class="container">
-                <a class = "logo" href="index.html">zephyr</a>
-                <nav>
-                    <a href="index.html">Головна</a>
-                    <a href="products.html">Усі товари</a>
-                    <a href="assembly.html">Конфігуратор ПК</a>
-                    <a href="info.html">Про нас</a>
-                </nav>
-                <div class="cartButton">
+            <div class="topHeader">
+                <a href="index.html" class="logoBlock">
+                    <img src="img/icon.png" class="logoIcon" alt="Логотип">
+                    <span>zephyr</span>
+                </a>
+
+                <div class="centerBlock">
+                    <span class="headerText">магазин комп'ютерної техніки</span>
                     
+                    <div class="searchContainer">
+                        <input type="text" class="searchInput" placeholder="Знайти товар">
+                        <button class="searchBtn">
+                            <img src="img/misc/search.png" class="icon searchIcon">
+                        </button>
+                    </div>
+                </div>
+
+                <div class="miscWrapper">
+                    <button onclick="alert('Ваш профіль')" class="miscBtn">
+                        <span class="userName">Гість (зареєструватися?)</span>
+                        <span class="miscIcon"><img src="img/misc/user.png" class="icon"></span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="bottomHeader">
+                <div class="switchWrapper">
+                    <input type="checkbox" id="themeToggle">
+                    <label for="themeToggle" id="themeLabel"></label>
+                </div>
+
+                <nav>
+                    <a href="index.html">ГОЛОВНА</a>
+                    <a href="products.html">УСІ ТОВАРИ</a>
+                    <a href="assembly.html">КОНФІГУРАТОР ПК</a>
+                    <a href="info.html">ПРО НАС</a>
+                </nav>
+
+                <div class="miscWrapper">
+                    <button onclick="alert('кошик')" class="miscBtn">
+                        <span class="cartAmount">0</span>
+                        <span class="miscIcon"><img src="img/misc/cart.png" class="icon"></span>
+                    </button>
                 </div>
             </div>
         </header>
+
         <main>
             
         </main>
-        <footer>
 
+        <footer>
+            
         </footer>
+
+        <script src="script.js"></script> 
     </body>
 </html>
