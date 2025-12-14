@@ -9,6 +9,7 @@
     --shadow-out: 0 2px 10px rgba(0,0,0,0.5);
     
     --transition-speed: 0.3s;
+    --icon-filter: none;
 }
 
 body.light-theme
@@ -20,6 +21,7 @@ body.light-theme
     
     --shadow-inset: inset 3px 3px 7px #bcc2e0, inset -3px -3px 7px #e3d9ec;
     --shadow-out: 5px 5px 10px #b8b9be, -5px -5px 10px #ffffff;
+    --icon-filter: invert(1);
 }
 
 * { box-sizing: border-box; }
@@ -83,6 +85,9 @@ body
     width: 60px;
     height: 60px;
     object-fit: contain;
+
+    filter: var(--icon-filter);
+    transition: filter var(--transition-speed);
 }
 
 .miscIcon
@@ -274,7 +279,7 @@ nav a:hover
     
     box-shadow: 0 0 10px #717b97;
     
-    transition: 0.3s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+    transition: 0.2s ease-in-out;
 }
 
 #themeToggle:checked + #themeLabel:after
