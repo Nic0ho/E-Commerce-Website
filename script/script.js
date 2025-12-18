@@ -121,14 +121,12 @@ function renderProducts()
                     <img src="${product.image}" class="card-img" alt="${product.title}">
                     <div class="card-title">${product.title}</div>
                     <div class="counter-wrapper">
-                            <button class="counter-btn" onclick="updatequantity(this, -1)">-</button>
-                            <input type="text" class="counter-input" value="1" readonly>
-                            <button class="counter-btn" onclick="updatequantity(this, 1)">+</button>
+                            <button class="cnt-btn" onclick="updateQty(this, -1)">-</button>
+                            <input type="text" class="cnt-input" value="1" readonly>
+                            <button class="cnt-btn" onclick="updateQty(this, 1)">+</button>
                     </div>
                     <div class="card-price">${product.price} грн</div>
-                    <div class="card-actions">
-                        <button class="miscBtn add-to-cart-btn" onclick="addToCartFromCard(this, ${product.id})">Додати в кошик</button>
-                    </div>
+                    <div class="card-actions"><button class="miscBtn add-to-cart-btn" onclick="addToCartFromCard(this, ${product.id})">Додати в кошик</button></div>
                 </div>
                 <div class="product-details">
                     <h3>Характеристики</h3>
@@ -206,13 +204,15 @@ function changePage(direction)
     }
 }
 
-function updatequantity(btn, change)
+function updateQty(btn, change)
 {
     let wrapper = btn.closest('.counter-wrapper');
-    let input = wrapper.querySelector('.counter-input');
+    let input = wrapper.querySelector('.cnt-input');
+    
     let currentValue = parseInt(input.value);
+    
     let newValue = currentValue + change;
-
+    
     if (newValue < 1) newValue = 1;
     input.value = newValue;
 }
@@ -225,11 +225,12 @@ function toggleCart()
     wrapper.classList.toggle('active');
 }
 
+
 function addToCartFromCard(btn, productId)
 {
     let card = btn.closest('.product-card');
-    let quantityInput = card.querySelector('.counter-input');
-    let quantity = parseInt(quantityInput.value) || 1;
+    let qtyInput = card.querySelector('.cnt-input');
+    let quantity = parseInt(qtyInput.value) || 1;
 
     addToCart(productId, quantity);
 }
@@ -241,7 +242,10 @@ function addToCart(productId, quantity = 1)
 
     let existing = cart.find(item => item.id === productId);
 
-    if (existing) { existing.quantity += quantity; }
+    if (existing)
+    {
+        existing.qty += quantity;
+    }
     else
     {
         cart.push(
@@ -250,7 +254,7 @@ function addToCart(productId, quantity = 1)
             title: product.title,
             price: product.price,
             image: product.image,
-            quantity: quantity
+            qty: quantity
         });
     }
 
@@ -267,7 +271,7 @@ function updateCartUI()
     container.innerHTML = '';
     
     let totalPrice = 0;
-    let totalquantity = 0;
+    let totalQty = 0;
 
     if (cart.length === 0)
     {
@@ -280,21 +284,21 @@ function updateCartUI()
         
         cart.forEach((item, index) =>
         {
-            let itemTotal = item.price * item.quantity;
+            let itemTotal = item.price * item.qty;
             totalPrice += itemTotal;
-            totalquantity += item.quantity;
+            totalQty += item.qty;
 
             container.innerHTML += `
                 <div class="cart-item">
                     <img src="${item.image}" class="cart-item-img">
                     <div class="cart-item-info">
-                        <div class="cart-item-title">×${item.quantity} ${item.title} </div>
+                        <div class="cart-item-title">×${item.qty} ${item.title} </div>
                         <div class="cart-item-price"><b>${itemTotal} грн</b></div>
                     </div>
                     <div class="cart-item-controls">
-                        <button class="cart-ctrl-btn" onclick="changeCartquantity(${index}, -1)">-</button>
-                        <span>${item.quantity}</span>
-                        <button class="cart-ctrl-btn" onclick="changeCartquantity(${index}, 1)">+</button>
+                        <button class="cart-ctrl-btn" onclick="changeCartQty(${index}, -1)">-</button>
+                        <span>${item.qty}</span>
+                        <button class="cart-ctrl-btn" onclick="changeCartQty(${index}, 1)">+</button>
                     </div>
                 </div>
             `;
@@ -302,23 +306,19 @@ function updateCartUI()
     }
 
     totalEl.innerText = totalPrice + ' грн';
-    countEl.innerText = totalquantity;
+    countEl.innerText = totalQty;
 }
 
-function changeCartquantity(index, change)
+function changeCartQty(index, change)
 {
-    cart[index].quantity += change;
+    cart[index].qty += change;
     
-    if (cart[index].quantity <= 0)
-    {
-        cart.splice(index, 1);
-    }
+    if (cart[index].qty <= 0) cart.splice(index, 1);
     
     updateCartUI();
 }
 
 document.addEventListener('click', () => { document.getElementById('cartWrapper')?.classList.remove('active'); });
-
 
 function submitOrder()
 {
@@ -354,10 +354,10 @@ function submitOrder()
             id: item.id,
             title: item.title,
             price: item.price,
-            quantity: item.quantity,
-            total: item.price * item.quantity
+            qty: item.qty,
+            total: item.price * item.qty
         })),
-        total: cart.reduce((sum, item) => sum + item.price * item.quantity, 0)
+        total: cart.reduce((sum, item) => sum + item.price * item.qty, 0)
     };
 
     downloadOrderFile(order);
