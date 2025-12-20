@@ -879,7 +879,7 @@ footer
     right: 0;
     width: 400px;
     background-color: var(--bg-color);
-    box-shadow: var(--shadow-out);
+    box-shadow: var(--shadow-inset);
     border-radius: 20px;
     padding: 20px;
     
@@ -947,7 +947,6 @@ footer
     font-size: 14px;
     font-weight: bold;
     display: -webkit-box;
-    -webkit-line-clamp: 1;
     -webkit-box-orient: vertical;
     overflow: hidden;
 }
@@ -971,14 +970,15 @@ footer
     border-radius: 50%;
     border: none;
     background: var(--bg-color);
-    box-shadow: var(--shadow-out);
+    box-shadow: var(--shadow-inset);
     cursor: pointer;
     font-weight: bold;
-}
 
-.cart-ctrl-btn:active
-{
-    box-shadow: var(--shadow-inset);
+    text-align: center;
+    font-family: 'Nunito', sans-serif;
+    font-size: 18px;
+    color: var(--text-color);
+    outline: none;
 }
 
 .cart-footer

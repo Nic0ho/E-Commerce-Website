@@ -139,7 +139,7 @@ function renderProducts()
     });
 
     let pageIndicator = document.getElementById('pageIndicator');
-    if (pageIndicator) pageIndicator.innerText = `Стор. ${currentPage}`;
+    if (pageIndicator) pageIndicator.innerText = `${currentPage}`;
 }
 
 function toggleDetails(btn)
