@@ -536,25 +536,6 @@ nav a:hover { color: var(--text-hover); }
     transform: scaleX(1);
 }
 
-.product-card.active.expand-left .product-shell
-{
-    width: calc(280px + 350px);
-    flex-direction: row-reverse;
-}
-
-.product-card.active.expand-left .card-main
-{
-    border-top-left-radius: 0;
-    border-bottom-left-radius: 0;
-}
-
-.product-card.active.expand-left .product-details
-{
-    opacity: 1;
-    pointer-events: auto;
-    transform: scaleX(1);
-}
-
 .build-pc-btn
 {
     margin-top: auto;

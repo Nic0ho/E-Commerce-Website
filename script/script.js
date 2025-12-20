@@ -159,11 +159,7 @@ function toggleDetails(btn)
         return;
     }
 
-    let rect = card.getBoundingClientRect();
-    let spaceRight = window.innerWidth - rect.right;
-    let dir = spaceRight < 350 + 40 ? 'expand-left' : 'expand-right';
-
-    card.classList.add('active', dir);
+    card.classList.add('active', 'expand-right');
 
     btn.textContent = '×';
     btn.style.color = '#ff4757';
